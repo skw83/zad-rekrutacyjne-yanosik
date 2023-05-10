@@ -1,4 +1,5 @@
 This repository contains two projects. One of them is a server, second is a client.
+
 Server application responsibility:
 - create socket to connect with a client application
 - connect with a database (MySQL)
