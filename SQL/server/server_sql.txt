@@ -45,12 +45,12 @@ VALUES
 INSERT INTO vehicles 
 (id, login, Brand, model, vin, engine_capacity, body_version, insert_time)
 VALUES 
-(1, 'janek123', 'Toyota', 'Corolla', '12345678901234567', 1.6, 'sedan', NOW()),
-(2, 'janek123', 'Ford', 'Fiesta', '12345678901234567', 1.9, 'combi', NOW()),
-(3, 'janek123', 'Mercedes', 'W124', '12345678901234567', 3.2, 'coupe', NOW()),
-(4, 'kowal@', 'Fiat', 'Multipla', '12345678901234567', 1.9, 'minivan', NOW()),
-(5, 'kowal@', 'BMW', 'M1', '12345678901234567', 3.4, 'coupe', NOW()),
-(6, 'brzdac', 'Fiat', '124 Spider', '12345678901234567', 1.8, 'cabrio', NOW());
+(1, 'jankowalski', 'Toyota', 'Corolla', '12345678901234567', 1.6, 'sedan', NOW()),
+(2, 'jankowalski', 'Ford', 'Fiesta', '12345678901234567', 1.9, 'combi', NOW()),
+(3, 'jankowalski', 'Mercedes', 'W124', '12345678901234567', 3.2, 'coupe', NOW()),
+(4, 'ddami', 'Fiat', 'Multipla', '12345678901234567', 1.9, 'minivan', NOW()),
+(5, 'ddami', 'BMW', 'M1', '12345678901234567', 3.4, 'coupe', NOW()),
+(6, 'doris', 'Fiat', '124 Spider', '12345678901234567', 1.8, 'cabrio', NOW());
 
 INSERT INTO insurance_offers 
 (id, vehicle_id, insurer, price, insurance_options, insert_time) 
