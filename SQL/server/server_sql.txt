@@ -60,3 +60,9 @@ VALUES
 (3, 4, 'PZU', 1800.00, 'OC, AC, Assistance 24/7, Szyby', NOW()),
 (4, 1, 'PZU', 1450.00, 'OC, AC, Assistance 24/7, Opony', NOW()),
 (5, 6, 'Ergo Hestia', 2200.00, 'OC, AC, Assistance 24/7, Szyby, Kradzież', NOW());
+
+SELECT v.brand, v.model, io.insurer, io.price
+FROM insurance_db.vehicles v
+JOIN insurance_db.insurance_offers io ON v.id = io.vehicle_id
+JOIN insurance_db.users u ON v.login = u.login
+WHERE u.id = 1;
