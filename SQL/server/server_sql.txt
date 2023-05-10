@@ -1,0 +1,62 @@
+CREATE SCHEMA `insurance_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci ;
+
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY NOT NULL,
+    nick TEXT NOT NULL,
+    login TEXT NOT NULL,
+    password TEXT NOT NULL,
+    name VARCHAR(20) NOT NULL,
+    surname VARCHAR(20) NOT NULL,
+    pesel VARCHAR(11) NOT NULL,
+    city VARCHAR(45) NOT NULL,
+    postal_code VARCHAR(6) NOT NULL,
+    street VARCHAR(45) NOT NULL,
+    insert_time TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE vehicles (
+  id BIGINT PRIMARY KEY NOT NULL,
+  login TEXT NOT NULL REFERENCES users(login),
+  Brand TEXT NOT NULL,
+  model TEXT NOT NULL,
+  vin VARCHAR(17) NOT NULL,
+  engine_capacity FLOAT NOT NULL,
+  body_version VARCHAR(15) NOT NULL,
+  insert_time TIMESTAMP NOT NULL
+);
+
+CREATE TABLE insurance_offers (
+  id BIGINT PRIMARY KEY NOT NULL,
+  vehicle_id BIGINT NOT NULL REFERENCES vehicles(id),
+  insurer TEXT NOT NULL,
+  price FLOAT NOT NULL,
+  insurance_options VARCHAR(500) NOT NULL,
+  insert_time TIMESTAMP NOT NULL
+);
+
+INSERT INTO users
+(id, nick, login, password, name, surname, pesel, city, postal_code, street) 
+VALUES
+(1, 'janek123', 'jankowalski', 'mojehaslo', 'Jan', 'Kowalski', '85082515699', 'Warszawa', '10-001', 'Aleje Jerozolimskie 32a' ),
+(2, 'kowal@', 'ddami', 'batman', 'Przemysław', 'Kowalewicz', '79011715488', 'Kraków', '55-081', 'Podwawelska 17' ),
+(3, 'brzdac', 'doris', 'rybcia', 'Dorota', 'Nowak', '95052528159', 'Poznań', '61-148', 'Krańcowa 7' );
+
+
+INSERT INTO vehicles 
+(id, login, Brand, model, vin, engine_capacity, body_version, insert_time)
+VALUES 
+(1, 'janek123', 'Toyota', 'Corolla', '12345678901234567', 1.6, 'sedan', NOW()),
+(2, 'janek123', 'Ford', 'Fiesta', '12345678901234567', 1.9, 'combi', NOW()),
+(3, 'janek123', 'Mercedes', 'W124', '12345678901234567', 3.2, 'coupe', NOW()),
+(4, 'kowal@', 'Fiat', 'Multipla', '12345678901234567', 1.9, 'minivan', NOW()),
+(5, 'kowal@', 'BMW', 'M1', '12345678901234567', 3.4, 'coupe', NOW()),
+(6, 'brzdac', 'Fiat', '124 Spider', '12345678901234567', 1.8, 'cabrio', NOW());
+
+INSERT INTO insurance_offers 
+(id, vehicle_id, insurer, price, insurance_options, insert_time) 
+VALUES 
+(1, 1, 'AXA', 1500.00, 'OC, AC, Assistance 24/7', NOW()),
+(2, 2, 'Allianz', 2000.00, 'OC, Assistance 24/7', NOW()),
+(3, 4, 'PZU', 1800.00, 'OC, AC, Assistance 24/7, Szyby', NOW()),
+(4, 1, 'PZU', 1450.00, 'OC, AC, Assistance 24/7, Opony', NOW()),
+(5, 6, 'Ergo Hestia', 2200.00, 'OC, AC, Assistance 24/7, Szyby, Kradzież', NOW());
